@@ -8,7 +8,7 @@ eventlet.monkey_patch()  # Muy importante para compatibilidad con WebSockets en 
 
 app = Flask(__name__)
 CORS(app)  # Habilita CORS para todo
-socketio = SocketIO(app, cors_allowed_origins="*")  # CORS para Socket.IO
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.10.13:443/")  # CORS para Socket.IO
 
 # Diccionario en memoria para controlar las salas y sus usuarios
 salas = {}
