@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, request
+from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 import random
 import string
+import eventlet
+eventlet.monkey_patch()  # Muy importante para compatibilidad con WebSockets en Railway
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+CORS(app)  # Habilita CORS para todo
+socketio = SocketIO(app, cors_allowed_origins="*")  # CORS para Socket.IO
 
 # Diccionario en memoria para controlar las salas y sus usuarios
 salas = {}
